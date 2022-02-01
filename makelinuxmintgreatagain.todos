@@ -1,0 +1,186 @@
+#!/usr/bin/bash
+# Remove Bloatwares
+sudo apt remove xreader hexchat transmission* simple-scan libreoffice* pix thunderbird celluloid drawing hypnotix rhythmbox xviewer
+sudo apt autoremove
+# Add Repositories
+sudo add-apt-repository ppa:gnumdk/lollypop
+sudo add-apt-repository ppa:mscore-ubuntu/mscore3-stable
+sudo add-apt-repository ppa:apandada1/blanket
+sudo add-apt-repository ppa:lutris-team/lutris
+sudo add-apt-repository ppa:papirus/papirus
+sudo su
+sudo wget -qO - https://shop.softmaker.com/repo/linux-repo-public.key | apt-key add -
+sudo echo "deb https://shop.softmaker.com/repo/apt stable non-free" > /etc/apt/sources.list.d/softmaker.list
+exit
+# Fuck Snap Disabler
+sudo rm /etc/apt/preferences.d/nosnap.pref
+sudo apt update
+sudo apt full-upgrade
+# Install Apps
+sudo apt install guake steam-installer spotify-client gimp musescore3 python3-pip idle-python3.8 whatsapp-desktop audacity cheese -y git dialog unzip xmlstarlet gnome-contacts sqlitebrowser lutris inkscape jstest-gtk grub-customizer qjoypad kid3 lollypop kdeconnect pavucontrol vlc papirus-icon-theme okular stacer xournal blanket papirus-folders softmaker-freeoffice-2021 xclip python3-xlib kdenlive simplescreenrecorder openjdk-8-jre openjdk-17-jre eog deluge snapd
+# Install Snap Apps
+sudo snap install telegram-desktop
+sudo snap install mailspring
+# Install Python modules
+pip3 install pyperclip pyqt5 matplotlib python-docx odfpy xlsxwriter pygame pyqtwebengine pyexcel_ods markdown
+# Change Firefox theme to GTK
+curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme/master/scripts/install-by-curl.sh | bash
+# Install from installation files.
+cd $HOME/Downloads
+wget https://files.multimc.org/downloads/multimc_1.6-1.deb
+wget https://mega.nz/linux/MEGAsync/xUbuntu_20.04/amd64/megasync-xUbuntu_20.04_amd64.deb
+wget https://mega.nz/linux/MEGAsync/xUbuntu_20.04/amd64/nemo-megasync-xUbuntu_20.04_amd64.deb
+wget https://dl.discordapp.net/apps/linux/0.0.16/discord-0.0.16.deb
+sudo gdebi multimc_1.6-1.deb
+rm multimc_1.6-1.deb
+sudo gdebi megasync-xUbuntu_20.04_amd64.deb
+rm megasync-xUbuntu_20.04_amd64.deb
+sudo gdebi nemo-megasync-xUbuntu_20.04_amd64.deb
+rm nemo-megasync-xUbuntu_20.04_amd64.deb
+sudo gdebi discord*
+rm discord*
+# Install from github
+wget https://github.com/Elagoht/Passenger/raw/main/PassengerLinuxInstaller.tar.gz
+tar -xzvf PassengerLinuxInstaller.tar.gz
+sudo ./install.sh
+rm -rf Passenger*
+rm ./install.sh
+git clone https://github.com/Elagoht/TextReader
+cd TextReader/
+sudo  install.sh
+cd ..
+rm -rf TextReader/
+# Themes and icons
+git clone https://github.com/vinceliuice/Fluent-gtk-theme
+cd Fluent-gtk-theme
+sudo ./install.sh
+cd ..
+wget https://dl3.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTU5MDE4MjQ2NywidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiIwODBiMDc1YTI3ZjcwNTFiZmMyYzFhNjYyMzFkNzgyYjMyNTNkMmNmZTNmMmZiYmFhMzI0MWRmMGUyZmY3ZjkzZDU4OTcwOWM0NjlkZDg5M2MzOGQ1MTgxNmM5ZmIzMmFjOWNjNzcyYjdkYThiNDU2YzI3ODY3ZjUwODkzNjY3NyIsInQiOjE2NDM1MzM5NTksInN0ZnAiOiJkOGMzNmVlZWFkZjAzZTA5YmUwMTRkZTFjYmZhZjRkZSIsInN0aXAiOiI5NC41NC4yMi4zOSJ9.4egLVs7EJ06MrcmR9XZcZitOHn0B028MbzJlfz9Yebk/openzone-cursors-1.2.9.tar.xz
+tar -xvf openzone-cursors-1.2.9.tar.xz 
+sudo mv OpenZone_* /usr/share/icons/
+rm openzone-cursors-1.2.9.tar.xz 
+gsettings set org.cinnamon.desktop.wm.preferences theme 'Fluent-dark'
+gsettings set org.cinnamon.desktop.interface icon-theme 'Papirus-Dark'
+gsettings set org.cinnamon.desktop.interface gtk-theme 'Fluent-dark'
+gsettings set org.cinnamon.theme name 'Fluent-dark'
+gsettings set org.cinnamon.desktop.interface cursor-theme OpenZone_Black
+# Wallpaper
+wget https://raw.githubusercontent.com/Elagoht/OneLinePinguin/main/pinguin-ubuntu-purple.png -P $HOME/Pictures/wallpaper
+gsettings set org.cinnamon.desktop.background picture-uri file:///home/$USER/Pictures/wallpaper/pinguin-ubuntu-purple.png
+# Shortcuts 
+gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/ binding "['<Super>j']"
+gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/ command "xdg-open /home/$USER/Downloads"
+gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/ name 'downloads'
+gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom1/ binding "['<Super>Delete']"
+gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom1/ command 'xdg-open trash:///'
+gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom1/ name 'trash'
+gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom2/ binding "['<Primary><Shift>Escape']"
+gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom2/ command 'gnome-system-monitor'
+gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom2/ name 'system-monitor'
+gsettings set org.cinnamon.desktop.keybindings custom-list "['custom2', 'custom0', 'custom1']"
+gsettings set org.cinnamon.desktop.keybindings.wm toggle-fullscreen "['<Alt>F12']"
+gsettings set org.cinnamon.desktop.keybindings.wm toggle-above "['<Alt>F9']"
+gsettings set org.gnome.desktop.wm.keybindings panel-run-dialog "['<Super>r']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys email "['XF86Mail','<Super>m']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys www "['XF86WWW', '<Super>w']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys calculator "['XF86Calculator', '<Super>KP_Enter']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys mic-mute "['XF86AudioMicMute', '<Super>F1']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys volume-mute "['XF86AudioMute', '<Super>F2']"
+# Applets
+wget https://cinnamon-spices.linuxmint.com/files/applets/color-picker@fmete.zip -P ~/.local/share/cinnamon/applets
+wget https://cinnamon-spices.linuxmint.com/files/applets/weather@mockturtl.zip -P ~/.local/share/cinnamon/applets
+wget https://cinnamon-spices.linuxmint.com/files/applets/force-quit@cinnamon.org.zip -P ~/.local/share/cinnamon/applets
+wget https://cinnamon-spices.linuxmint.com/files/applets/betterlock.zip -P ~/.local/share/cinnamon/applets
+cd ~/.local/share/cinnamon/applets
+unzip betterlock.zip
+unzip weather@mockturtl.zip
+unzip force-quit@cinnamon.org.zip
+unzip color-picker@fmete.zip
+rm betterlock.zip
+rm weather@mockturtl.zip
+rm force-quit@cinnamon.org.zip
+rm color-picker@fmete.zip
+gsettings set org.cinnamon enabled-applets "['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:3:grouped-window-list@cinnamon.org:2', 'panel1:right:3:systray@cinnamon.org:3', 'panel1:right:4:xapp-status@cinnamon.org:4', 'panel1:left:1:notifications@cinnamon.org:5', 'panel1:right:5:printers@cinnamon.org:6', 'panel1:right:7:keyboard@cinnamon.org:8', 'panel1:left:2:favorites@cinnamon.org:9', 'panel1:right:10:network@cinnamon.org:10', 'panel1:right:9:sound@cinnamon.org:11', 'panel1:right:11:power@cinnamon.org:12', 'panel1:right:12:calendar@cinnamon.org:13', 'panel1:right:2:color-picker@fmete:14', 'panel1:right:1:force-quit@cinnamon.org:15', 'panel1:right:6:betterlock:16', 'panel1:right:13:user@cinnamon.org:17', 'panel1:right:8:weather@mockturtl:18']"
+# Install fonts
+sudo apt install ttf-mscorefonts-installer
+# Tweaks
+gsettings set org.cinnamon.settings-daemon.peripherals.mouse middle-button-enabled false
+gsettings set org.cinnamon.settings-daemon.peripherals.touchpad tap-to-click true
+gsettings set org.cinnamon.settings-daemon.peripherals.touchpad disable-while-typing false
+gsettings set org.cinnamon.settings-daemon.peripherals.touchpad clickpad-click 2
+gsettings set org.cinnamon.desktop.wm.preferences button-layout 'close,minimize,maximize:menu'
+gsettings set org.cinnamon.desktop.wm.preferences action-scroll-titlebar 'opacity'
+gsettings set org.cinnamon.desktop.wm.preferences min-window-opacity 10
+gsettings set org.cinnamon.desktop.wm.preferences num-workspaces 2
+gsettings set org.cinnamon.desktop.wm.preferences workspace-names "['Forgeground', 'Background']"
+# Autostart applications
+echo "[Desktop Entry]
+Name=Guake Terminal
+Comment=Use the command line in a Quake-like terminal
+TryExec=guake
+Exec=guake
+Icon=guake
+Type=Application
+Categories=GNOME;GTK;System;Utility;TerminalEmulator;
+StartupNotify=true
+X-Desktop-File-Install-Version=0.22" > $HOME/.config/autostart/guake.desktop
+echo "[Desktop Entry]
+Type=Application
+Version=1.0
+GenericName=File Synchronizer
+Name=MEGAsync
+Comment=Easy automated syncing between your computers and your MEGA cloud drive.
+TryExec=megasync
+Exec=megasync
+Icon=mega
+Terminal=false
+Categories=Network;System;
+StartupNotify=false
+X-GNOME-Autostart-Delay=60" > $HOME/.config/autostart/megasync.desktop
+echo "[Desktop Entry]
+Type=Application
+Name=Spotify
+GenericName=Music Player
+Icon=spotify-client
+TryExec=spotify
+Exec=spotify %U
+Terminal=false
+MimeType=x-scheme-handler/spotify;
+Categories=Audio;Music;Player;AudioVideo;
+StartupWMClass=spotify" > $HOME/.config/autostart/spotify.desktop
+echo "[Desktop Entry]
+Version=1.0
+Name=Telegram Desktop
+Comment=Official desktop version of Telegram messaging app
+TryExec=telegram-desktop
+Exec=telegram-desktop -autostart
+Icon=telegram
+Terminal=false
+StartupWMClass=TelegramDesktop
+Type=Application
+Categories=Chat;Network;InstantMessaging;Qt;
+MimeType=x-scheme-handler/tg;
+Keywords=tg;chat;im;messaging;messenger;sms;tdesktop;
+X-GNOME-UsesNotifications=true" > $HOME/.config/autostart/telegramdesktop.desktop
+# Nemo Actions
+sudo wget https://raw.githubusercontent.com/mhsattarian/nemo-open-in-vscode/master/vscode.nemo_action -O ~/.local/share/nemo/actions/vscode.nemo_action
+git clone https://github.com/Elagoht/ImageManipulactions
+cd ImageManipulactions
+sudo ./install.sh
+rm -rf ImageManipulactions
+# Add Swap Area
+sudo su 
+dd if=/dev/zero of=/swapfile1 bs=1024 count=8388608
+mkswap /swapfile1
+chown root:root /swapfile1
+chmod 0600 /swapfile1
+swapon /swapfile1
+echo "/swapfile1 swap swap defaults 0 0" >> /etc/fstab
+exit
+# Download Retropie to install it in free time.
+cd
+git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
+exit
+# TODO: install vscode
+# TODO: install nvim
+# TODO: install synth-shell
